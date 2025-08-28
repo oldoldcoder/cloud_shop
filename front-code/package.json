@@ -1,0 +1,29 @@
+{
+  "name": "cloud-shop-frontend",
+  "version": "1.0.0",
+  "description": "Cloud Shop Frontend Application",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.3.4",
+    "vue-router": "^4.2.4",
+    "axios": "^1.5.0",
+    "element-plus": "^2.3.8"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.3.4",
+    "vite": "^4.4.9"
+  },
+  "keywords": [
+    "vue",
+    "cloud-shop",
+    "frontend"
+  ],
+  "author": "Cloud Shop Team",
+  "license": "MIT"
+}
