@@ -1,0 +1,13 @@
+2025-08-29 15:38:52,581|192.168.1.212|user-service-dev|DEFAULT_GROUP|null|null|1756453132525|192.168.1.212|persist|pub|-1|00ba562adfef60b8d0d9f6e14bbc8a63
+2025-08-29 15:38:52,651|192.168.1.212|user-service-dev|DEFAULT_GROUP|null|null|1756453132525|192.168.1.212|dump|ok|126|918
+2025-08-29 17:25:23,300|192.168.1.212|user-service.yaml|DEFAULT_GROUP|null|null|-1|pull|not-found|-1|192.168.1.212|false|grpc
+2025-08-29 22:16:30,134|192.168.1.212|user-service.yaml|DEFAULT_GROUP|null|null|-1|pull|not-found|-1|192.168.1.212|false|grpc
+2025-08-29 22:24:18,594|192.168.1.212|user-service-dev|DEFAULT_GROUP|null|null|1756453132525|pull|ok|24326069|192.168.1.212|false|grpc
+2025-08-29 22:26:23,544|192.168.1.212|user-service-dev|DEFAULT_GROUP|null|null|1756453132525|pull|ok|24451019|192.168.1.212|false|grpc
+2025-08-29 22:32:47,818|192.168.1.212|user-service-dev|DEFAULT_GROUP|null|null|1756453132525|pull|ok|24835293|192.168.1.212|false|grpc
+2025-08-29 22:33:50,792|192.168.1.212|user-service-dev.yaml|DEFAULT_GROUP|null|null|-1|pull|not-found|-1|192.168.1.212|false|grpc
+2025-08-29 22:36:08,718|192.168.1.212|user-service-dev|DEFAULT_GROUP|null|null|1756478168718|192.168.1.103|persist|remove|-1|null
+2025-08-29 22:36:08,805|192.168.1.212|user-service-dev|DEFAULT_GROUP|null|null|1756478168718|192.168.1.212|dump|remove-ok|87|0
+2025-08-29 22:36:24,227|192.168.1.212|user-service-dev.yaml|DEFAULT_GROUP|null|null|1756478184212|192.168.1.212|persist|pub|-1|00ba562adfef60b8d0d9f6e14bbc8a63
+2025-08-29 22:36:24,323|192.168.1.212|user-service-dev.yaml|DEFAULT_GROUP|null|null|1756478184212|192.168.1.212|dump|ok|111|918
+2025-08-29 22:36:43,874|192.168.1.212|user-service-dev.yaml|DEFAULT_GROUP|null|null|1756478184212|pull|ok|19662|192.168.1.212|false|grpc

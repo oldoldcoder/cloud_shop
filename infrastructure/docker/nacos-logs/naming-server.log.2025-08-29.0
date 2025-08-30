@@ -1,0 +1,24 @@
+2025-08-29 15:38:05,591 INFO [SelectorManager] Load SelectorContextBuilder(class com.alibaba.nacos.naming.selector.context.CmdbSelectorContextBuilder) contextType(CMDB) successfully.
+
+2025-08-29 15:38:05,591 INFO [SelectorManager] Load SelectorContextBuilder(class com.alibaba.nacos.naming.selector.context.NoneSelectorContextBuilder) contextType(NONE) successfully.
+
+2025-08-29 15:38:05,592 INFO [SelectorManager] Load Selector(class com.alibaba.nacos.naming.selector.LabelSelector) type(label) contextType(CMDB) successfully.
+
+2025-08-29 15:38:05,592 INFO [SelectorManager] Load Selector(class com.alibaba.nacos.naming.selector.NoneSelector) type(none) contextType(NONE) successfully.
+
+2025-08-29 15:38:06,609 INFO Load instance extension handler []
+
+2025-08-29 17:25:28,094 INFO Client connection 1756459522916_127.0.0.1_57116 disconnect, remove instances and subscribers
+
+2025-08-29 22:16:34,970 INFO Client connection 1756476989824_127.0.0.1_52858 disconnect, remove instances and subscribers
+
+2025-08-29 22:24:23,432 INFO Client connection 1756477458282_127.0.0.1_46358 disconnect, remove instances and subscribers
+
+2025-08-29 22:26:27,342 INFO Client connection 1756477583255_127.0.0.1_47988 disconnect, remove instances and subscribers
+
+2025-08-29 22:32:51,819 INFO Client connection 1756477967515_127.0.0.1_42332 disconnect, remove instances and subscribers
+
+2025-08-29 22:33:54,649 INFO Client connection 1756478030502_127.0.0.1_56110 disconnect, remove instances and subscribers
+
+2025-08-29 22:36:48,687 INFO Client connection 1756478203558_127.0.0.1_50210 disconnect, remove instances and subscribers
+

@@ -1,0 +1,10 @@
+2025-08-29 15:38:52,582|75|true|192.168.1.103|publish|user-service-dev|DEFAULT_GROUP||00ba562adfef60b8d0d9f6e14bbc8a63|null
+2025-08-29 17:25:23,300|9|300|192.168.1.212|get|user-service.yaml|DEFAULT_GROUP|||unknown
+2025-08-29 22:16:30,135|2|300|192.168.1.212|get|user-service.yaml|DEFAULT_GROUP|||unknown
+2025-08-29 22:24:18,594|6|200|192.168.1.212|get|user-service-dev|DEFAULT_GROUP||00ba562adfef60b8d0d9f6e14bbc8a63|unknown
+2025-08-29 22:26:23,544|2|200|192.168.1.212|get|user-service-dev|DEFAULT_GROUP||00ba562adfef60b8d0d9f6e14bbc8a63|unknown
+2025-08-29 22:32:47,818|2|200|192.168.1.212|get|user-service-dev|DEFAULT_GROUP||00ba562adfef60b8d0d9f6e14bbc8a63|unknown
+2025-08-29 22:33:50,792|2|300|192.168.1.212|get|user-service-dev.yaml|DEFAULT_GROUP|||unknown
+2025-08-29 22:36:08,719|25|true|192.168.1.103|remove|user-service-dev|DEFAULT_GROUP||null|null
+2025-08-29 22:36:24,227|22|true|192.168.1.103|publish|user-service-dev.yaml|DEFAULT_GROUP||00ba562adfef60b8d0d9f6e14bbc8a63|null
+2025-08-29 22:36:43,874|6|200|192.168.1.212|get|user-service-dev.yaml|DEFAULT_GROUP||00ba562adfef60b8d0d9f6e14bbc8a63|unknown

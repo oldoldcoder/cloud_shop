@@ -1,0 +1,17 @@
+{
+    "event_id": "uuid-1111",
+    "event_type": "OrderCreated",
+    "event_time": "2025-08-25T10:00:00Z",
+    "trace_id": "trace-001",
+    "payload": {
+      "order_id": "order-1001",
+      "user_id": "user-123",
+      "items": [
+        { "product_id": "p-001", "quantity": 2, "price": 100 },
+        { "product_id": "p-002", "quantity": 1, "price": 50 }
+      ],
+      "total_amount": 250,
+      "status": "PENDING"
+    }
+  }
+  

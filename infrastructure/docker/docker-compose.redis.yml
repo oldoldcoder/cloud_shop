@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  redis:
+    image: redis:7.2-alpine      # 轻量级，arm/x86 都支持
+    container_name: redis
+    network_mode: host           # 和 nacos 一样，直接复用宿主机网络
+    command: redis-server --appendonly yes   # 开启 AOF 持久化
+    volumes:
+      - ./redis-data:/data       # 数据持久化目录
+      - ./redis-conf:/usr/local/etc/redis  # 配置文件（可选）
+    restart: always

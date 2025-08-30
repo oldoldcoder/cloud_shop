@@ -1,0 +1,24 @@
+2025-08-29 15:38:52,588 INFO [dump] add formal task. groupKey=user-service-dev+DEFAULT_GROUP
+
+2025-08-29 15:38:52,597 INFO [dump] process formal task. groupKey=user-service-dev+DEFAULT_GROUP
+
+2025-08-29 15:38:52,644 INFO [dump] md5 changed, save to disk cache ,groupKey=user-service-dev+DEFAULT_GROUP, newMd5=00ba562adfef60b8d0d9f6e14bbc8a63,oldMd5=
+
+2025-08-29 15:38:52,650 INFO [dump] md5 changed, update md5 and timestamp in jvm cache ,groupKey=user-service-dev+DEFAULT_GROUP, newMd5=00ba562adfef60b8d0d9f6e14bbc8a63,oldMd5=,lastModifiedTs=1756453132525
+
+2025-08-29 22:36:08,719 INFO [dump] add formal task. groupKey=user-service-dev+DEFAULT_GROUP
+
+2025-08-29 22:36:08,802 INFO [dump] process formal task. groupKey=user-service-dev+DEFAULT_GROUP
+
+2025-08-29 22:36:08,804 INFO [dump] remove  local disk cache,groupKey=user-service-dev+DEFAULT_GROUP 
+
+2025-08-29 22:36:08,804 INFO [dump] remove  local jvm cache,groupKey=user-service-dev+DEFAULT_GROUP 
+
+2025-08-29 22:36:24,227 INFO [dump] add formal task. groupKey=user-service-dev.yaml+DEFAULT_GROUP
+
+2025-08-29 22:36:24,317 INFO [dump] process formal task. groupKey=user-service-dev.yaml+DEFAULT_GROUP
+
+2025-08-29 22:36:24,318 INFO [dump] md5 changed, save to disk cache ,groupKey=user-service-dev.yaml+DEFAULT_GROUP, newMd5=00ba562adfef60b8d0d9f6e14bbc8a63,oldMd5=
+
+2025-08-29 22:36:24,319 INFO [dump] md5 changed, update md5 and timestamp in jvm cache ,groupKey=user-service-dev.yaml+DEFAULT_GROUP, newMd5=00ba562adfef60b8d0d9f6e14bbc8a63,oldMd5=,lastModifiedTs=1756478184212
+

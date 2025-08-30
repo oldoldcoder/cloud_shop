@@ -1,0 +1,15 @@
+{
+    "event_id": "uuid-2222",
+    "event_type": "InventoryReserved",
+    "event_time": "2025-08-25T10:01:00Z",
+    "trace_id": "trace-001",
+    "payload": {
+      "order_id": "order-1001",
+      "reserved_items": [
+        { "product_id": "p-001", "reserved_quantity": 2 },
+        { "product_id": "p-002", "reserved_quantity": 1 }
+      ],
+      "status": "SUCCESS"
+    }
+  }
+  

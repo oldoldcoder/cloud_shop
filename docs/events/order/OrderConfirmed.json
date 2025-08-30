@@ -1,0 +1,13 @@
+{
+    "event_id": "uuid-5555",
+    "event_type": "OrderConfirmed",
+    "event_time": "2025-08-25T10:04:00Z",
+    "trace_id": "trace-001",
+    "payload": {
+      "order_id": "order-1001",
+      "user_id": "user-123",
+      "status": "CONFIRMED",
+      "total_amount": 250
+    }
+  }
+  

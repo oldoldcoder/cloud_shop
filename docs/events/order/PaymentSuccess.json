@@ -1,0 +1,13 @@
+{
+    "event_id": "uuid-4444",
+    "event_type": "PaymentSuccess",
+    "event_time": "2025-08-25T10:03:00Z",
+    "trace_id": "trace-001",
+    "payload": {
+      "order_id": "order-1001",
+      "payment_id": "pay-789",
+      "amount": 250,
+      "method": "credit_card",
+      "status": "SUCCESS"
+    }
+  }
