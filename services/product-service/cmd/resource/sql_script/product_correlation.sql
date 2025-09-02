@@ -1,0 +1,75 @@
+-- 商品表（SPU）
+CREATE TABLE products (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY COMMENT '商品ID',
+    name VARCHAR(200) NOT NULL COMMENT '商品名称',
+    description TEXT COMMENT '商品描述',
+    brand VARCHAR(100) DEFAULT NULL COMMENT '品牌',
+    price DECIMAL(10,2) NOT NULL COMMENT '基础价格（可能作为参考价）',
+    status TINYINT DEFAULT 1 COMMENT '商品状态（0=下架，1=上架）',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='商品表（SPU）';
+
+-- 分类表
+CREATE TABLE categories (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY COMMENT '分类ID',
+    name VARCHAR(100) NOT NULL COMMENT '分类名称',
+    parent_id BIGINT DEFAULT NULL COMMENT '父分类ID（支持多级分类）',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='分类表';
+
+-- 商品和分类关联表（多对多）
+CREATE TABLE product_category (
+    product_id BIGINT NOT NULL COMMENT '商品ID',
+    category_id BIGINT NOT NULL COMMENT '分类ID',
+    PRIMARY KEY (product_id, category_id),
+    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE,
+    FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='商品与分类关联表';
+
+-- 商品图片表
+CREATE TABLE product_images (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY COMMENT '图片ID',
+    product_id BIGINT NOT NULL COMMENT '商品ID',
+    image_url VARCHAR(500) NOT NULL COMMENT '图片地址',
+    is_main TINYINT DEFAULT 0 COMMENT '是否主图（0=否，1=是）',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '上传时间',
+    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='商品图片表';
+
+-- SKU表
+CREATE TABLE product_skus (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY COMMENT 'SKU ID',
+    product_id BIGINT NOT NULL COMMENT '所属商品ID',
+    sku_code VARCHAR(100) NOT NULL UNIQUE COMMENT 'SKU编号（唯一）',
+    attributes JSON COMMENT 'SKU属性（例如颜色:黑色, 内存:256GB）',
+    price DECIMAL(10,2) NOT NULL COMMENT '该SKU价格',
+    stock INT DEFAULT 0 COMMENT '库存数量',
+    status TINYINT DEFAULT 1 COMMENT '状态（0=下架，1=上架）',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='商品SKU表';
+
+-- 商品库存表（也可以直接挂在 SKU 上，这里保留独立设计以扩展仓库、区域）
+CREATE TABLE product_stock (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY COMMENT '库存ID',
+    sku_id BIGINT NOT NULL COMMENT 'SKU ID',
+    warehouse VARCHAR(100) DEFAULT 'default' COMMENT '仓库或区域',
+    quantity INT NOT NULL COMMENT '库存数量',
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    FOREIGN KEY (sku_id) REFERENCES product_skus(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='商品库存表';
+
+-- 商品折扣表
+CREATE TABLE product_discounts (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY COMMENT '折扣ID',
+    product_id BIGINT NOT NULL COMMENT '商品ID',
+    discount_type VARCHAR(50) NOT NULL COMMENT '折扣类型（满减/打折/优惠券）',
+    discount_value DECIMAL(10,2) NOT NULL COMMENT '折扣值（百分比或金额）',
+    start_time TIMESTAMP NOT NULL COMMENT '开始时间',
+    end_time TIMESTAMP NOT NULL COMMENT '结束时间',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='商品折扣信息表';
