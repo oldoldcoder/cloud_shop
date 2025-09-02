@@ -13,4 +13,6 @@ public interface UserMapper {
     Optional<User> findByEmail(@Param("email") String email);
 
     Optional<User> findByPhone(@Param("phone") String phone);
+    
+    int updateById(User user);
 }

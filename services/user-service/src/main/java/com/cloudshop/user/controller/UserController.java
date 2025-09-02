@@ -80,6 +80,36 @@ public class UserController {
     }
     
     /**
+     * 发送验证码
+     */
+    @PostMapping("/verification/send")
+    public ApiResponse<String> sendVerificationCode(@Valid @RequestBody SendVerificationCodeRequest request) {
+        try {
+            userService.sendVerificationCode(request);
+            return ApiResponse.success("验证码已发送", "验证码已发送到您的邮箱，请查收");
+        } catch (Exception e) {
+            return ApiResponse.error(e.getMessage());
+        }
+    }
+    
+    /**
+     * 验证验证码
+     */
+    @PostMapping("/verification/verify")
+    public ApiResponse<Boolean> verifyVerificationCode(@Valid @RequestBody VerifyCodeRequest request) {
+        try {
+            boolean isValid = userService.verifyVerificationCode(request);
+            if (isValid) {
+                return ApiResponse.success("验证成功", true);
+            } else {
+                return ApiResponse.error("验证码错误或已过期");
+            }
+        } catch (Exception e) {
+            return ApiResponse.error(e.getMessage());
+        }
+    }
+    
+    /**
      * 重置密码
      */
     @PostMapping("/password/reset")

@@ -22,16 +22,18 @@ spring:
           min-idle: 0
           max-wait: -1ms
   mail:
-    host: smtp.example.com
-    port: 587
-    username: your_email@example.com
-    password: your_password
+    host: smtp.163.com
+    port: 465
+    username: 13679342025@163.com
+    password: LZRUs38T6F3sSL7v
     properties:
-      mail:
-        smtp:
-          auth: true
-          starttls:
-            enable: true
+      mail.smtp.auth: true
+      mail.smtp.ssl.enable: true
+      mail.smtp.ssl.trust: smtp.163.com
+      mail.smtp.ssl.protocols: TLSv1.2
+      mail.smtp.connectiontimeout: 10000
+      mail.smtp.timeout: 10000
+      mail.smtp.writetimeout: 10000
   jackson:
     serialization:
       write-dates-as-timestamps: false

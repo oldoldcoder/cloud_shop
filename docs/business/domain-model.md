@@ -44,3 +44,4 @@ classDiagram
     Order "1" --> "many" Product : contains
     Order "1" --> Payment : has
     Product "1" --> Inventory : manages
+

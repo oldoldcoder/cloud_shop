@@ -36,4 +36,17 @@
         SELECT <include refid="Base_Column_List" /> FROM users WHERE phone = #{phone} LIMIT 1
     </select>
 
+    <update id="updateById" parameterType="com.cloudshop.user.domain.User">
+        UPDATE users 
+        SET username = #{username},
+            email = #{email},
+            phone = #{phone},
+            password_hash = #{passwordHash},
+            salt = #{salt},
+            role = #{role},
+            status = #{status},
+            updated_at = NOW()
+        WHERE id = #{id}
+    </update>
+
 </mapper>

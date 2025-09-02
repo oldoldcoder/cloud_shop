@@ -30,6 +30,16 @@ public interface UserService {
     void forgotPassword(ForgotPasswordRequest request);
     
     /**
+     * 发送验证码
+     */
+    void sendVerificationCode(SendVerificationCodeRequest request);
+    
+    /**
+     * 验证验证码
+     */
+    boolean verifyVerificationCode(VerifyCodeRequest request);
+    
+    /**
      * 重置密码
      */
     void resetPassword(ResetPasswordRequest request);

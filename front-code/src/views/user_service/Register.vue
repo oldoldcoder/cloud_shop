@@ -33,7 +33,7 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
-import { register as registerApi } from '@/api/user_service'
+import { register as registerApi } from '@/api/user'
 
 export default {
   name: 'Register',

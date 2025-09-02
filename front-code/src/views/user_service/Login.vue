@@ -25,7 +25,8 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
-import { login as loginApi } from '@/api/user_service'
+import { login as loginApi } from '@/api/user'
+import { setAuthInfo } from '@/utils/auth'
 
 export default {
   name: 'Login',
@@ -47,10 +48,8 @@ export default {
         try {
           const { data } = await loginApi(form.value)
           if (data.code === 200 && data.data) {
-            const { accessToken, refreshToken, userInfo } = data.data
-            localStorage.setItem('accessToken', accessToken || '')
-            localStorage.setItem('refreshToken', refreshToken || '')
-            localStorage.setItem('userInfo', JSON.stringify(userInfo || {}))
+            const { accessToken, refreshToken, user } = data.data
+            setAuthInfo(accessToken, refreshToken, user)
             ElMessage.success('登录成功')
             router.push('/')
           } else {

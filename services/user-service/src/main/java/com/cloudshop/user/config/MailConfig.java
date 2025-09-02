@@ -13,14 +13,21 @@ public class MailConfig {
     @Bean
     public JavaMailSender javaMailSender() {
         JavaMailSenderImpl sender = new JavaMailSenderImpl();
-        // 可由 application.yml 自动装配覆盖，这里给默认值避免空指针
-        sender.setHost("smtp.example.com");
-        sender.setPort(587);
-        sender.setUsername("your_email@example.com");
-        sender.setPassword("your_password");
+        // 163 邮箱 SMTP 配置
+        sender.setHost("smtp.163.com");
+        sender.setPort(465);  // 163 推荐 SSL 方式
+        sender.setUsername("13679342025@163.com");
+        sender.setPassword("LZRUs38T6F3sSL7v");  // 163 授权码
+        
         Properties props = sender.getJavaMailProperties();
         props.put("mail.smtp.auth", true);
-        props.put("mail.smtp.starttls.enable", true);
+        props.put("mail.smtp.ssl.enable", true);  // 启用 SSL
+        props.put("mail.smtp.ssl.trust", "smtp.163.com");  // 信任 163 SMTP 服务器
+        props.put("mail.smtp.ssl.protocols", "TLSv1.2");  // 使用 TLS 1.2
+        props.put("mail.smtp.connectiontimeout", 10000);  // 连接超时 10 秒
+        props.put("mail.smtp.timeout", 10000);  // 读取超时 10 秒
+        props.put("mail.smtp.writetimeout", 10000);  // 写入超时 10 秒
+        
         return sender;
     }
 }
