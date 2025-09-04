@@ -3,6 +3,8 @@ server:
 
 spring:
   cloud:
+    loadbalancer:
+      enabled: true
     gateway:
       discovery:
         locator:
@@ -10,47 +12,28 @@ spring:
       globalcors:
         cors-configurations:
           '[/**]':
-            allowed-origins: "http://localhost:8080"
+            allowed-origins: "http://localhost:12403,http://192.168.1.212:12403"
             allowed-methods: "*"
             allowed-headers: "*"
             allow-credentials: true
       routes:
-        # 用户服务 - 公开接口（不需要JWT认证）
-        - id: user-service-public
-          uri: lb://user-service
-          predicates:
-            - Path=/api/users/register, /api/users/login, /api/users/password/**, /api/users/verification/**
-        
-        # 用户服务 - 需要认证的接口
-        - id: user-service-auth
+        - id: user-service
           uri: lb://user-service
           predicates:
             - Path=/api/users/**
-          filters:
-            - name: JwtAuthenticationFilter
         - id: order-service
           uri: lb://order-service
           predicates:
             - Path=/api/orders/**
-          filters:
-            - name: JwtAuthenticationFilter
         - id: product-service
           uri: lb://product-service
           predicates:
             - Path=/api/products/**
-          filters:
-            - name: JwtAuthenticationFilter
         - id: payment-service
           uri: lb://payment-service
           predicates:
             - Path=/api/payments/**
-          filters:
-            - name: JwtAuthenticationFilter
 
-# JWT 配置
-jwt:
-  secret: "your-super-secret-jwt-key-here-make-it-long-and-random-at-least-256-bits"
-  access-token-expiration: 3600000  # 1小时
 
 # 日志配置
 logging:

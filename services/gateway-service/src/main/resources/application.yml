@@ -5,18 +5,24 @@ spring:
     active: dev
   config:
     import:
-      - nacos:${spring.application.name}-${spring.profiles.active}.yaml?group=DEFAULT_GROUP&namespace=public&server-addr=localhost:8848&username=nacos&password=nacos
+      - nacos:${spring.application.name}-${spring.profiles.active}.yaml?group=DEFAULT_GROUP&namespace=public
   cloud:
     nacos:
-      # 统一配置 Nacos 连接与认证（Config 用于配置拉取，Discovery 用于注册）
+      # 配置中心基础连接参数（仅用于 spring.config.import 解析）
       config:
         server-addr: localhost:8848
         username: nacos
         password: nacos
         group: DEFAULT_GROUP
         namespace: public
-      server-addr: ${spring.cloud.nacos.config.server-addr}
-      username: nacos
-      password: nacos
+      # 服务注册发现
       discovery:
         server-addr: ${spring.cloud.nacos.config.server-addr}
+        username: ${spring.cloud.nacos.config.username}
+        password: ${spring.cloud.nacos.config.password}
+        namespace: ${spring.cloud.nacos.config.namespace}
+        group: ${spring.cloud.nacos.config.group}
+
+logging:
+  level:
+    com.alibaba.nacos.client.config.impl.ClientWorker: warn

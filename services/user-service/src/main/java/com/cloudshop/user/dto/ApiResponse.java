@@ -35,6 +35,10 @@ public class ApiResponse<T> {
         return new ApiResponse<>(code, message);
     }
     
+    public static <T> ApiResponse<T> errorWithData(Integer code, String message, T data) {
+        return new ApiResponse<>(code, message, data);
+    }
+    
     // Getters and Setters
     public Integer getCode() {
         return code;
