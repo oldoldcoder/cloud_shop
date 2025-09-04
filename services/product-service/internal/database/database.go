@@ -3,6 +3,7 @@ package database
 import (
 	"fmt"
 	"log"
+
 	"oldoldcoder.com/cloudshop/product-service/internal/config"
 	"oldoldcoder.com/cloudshop/product-service/internal/models"
 
@@ -33,9 +34,11 @@ func InitDatabase(cfg *config.Config) error {
 
 	DB = db
 
-	// 自动迁移数据库表
-	if err := autoMigrate(); err != nil {
-		return fmt.Errorf("failed to auto migrate: %v", err)
+	// 自动迁移数据库表（可控）
+	if cfg.Migrate.Auto {
+		if err := autoMigrate(); err != nil {
+			return fmt.Errorf("failed to auto migrate: %v", err)
+		}
 	}
 
 	log.Println("Database initialized successfully")
@@ -47,8 +50,11 @@ func autoMigrate() error {
 	return DB.AutoMigrate(
 		&models.Product{},
 		&models.Category{},
+		&models.ProductCategory{},
 		&models.ProductImage{},
-		&models.ProductSpec{},
+		&models.ProductSKU{},
+		&models.ProductStock{},
+		&models.ProductDiscount{},
 	)
 }
 

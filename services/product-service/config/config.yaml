@@ -1,4 +1,5 @@
 server:
+  host: "0.0.0.0"
   port: 9082
 
 database:
@@ -16,3 +17,20 @@ redis:
 
 jwt:
   secret: "your-super-secret-jwt-key-here-make-it-long-and-random-at-least-256-bits"
+
+migrate:
+  auto: false
+
+nacos:
+  enabled: true
+  server_addr: "localhost:8848"
+  username: "nacos"
+  password: "nacos"
+  namespace: "public"
+  group: "DEFAULT_GROUP"
+  data_id: "product-service-dev.yaml"
+
+service:
+  name: "product-service"
+  register: true
+  ip: "127.0.0.1"
