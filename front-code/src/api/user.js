@@ -4,7 +4,7 @@ const prefix = '/api/users'
 
 // 创建 axios 实例 - 使用 Vite 代理，不设置 baseURL
 const api = axios.create({
-  timeout: 10000
+  timeout: 30000, // 首次请求可能触发连接池初始化，放宽超时
 })
 
 // 请求拦截器：添加 JWT 令牌
@@ -61,6 +61,9 @@ export const logout = () => api.post(`${prefix}/logout`)
 export const forgotPassword = (payload) => api.post(`${prefix}/password/forgot`, payload)
 export const resetPassword = (payload) => api.post(`${prefix}/password/reset`, payload)
 export const changePassword = (payload) => api.post(`${prefix}/password/change`, payload)
+// 验证码相关
+export const sendVerificationCode = (payload) => api.post(`${prefix}/verification/send`, payload)
+export const verifyVerificationCode = (payload) => api.post(`${prefix}/verification/verify`, payload)
 
 // 用户信息管理
 export const getUserInfo = () => api.get(`${prefix}/me`)

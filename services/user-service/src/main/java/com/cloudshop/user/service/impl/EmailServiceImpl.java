@@ -2,6 +2,7 @@ package com.cloudshop.user.service.impl;
 
 import com.cloudshop.user.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -15,12 +16,18 @@ public class EmailServiceImpl implements EmailService {
     
     @Autowired
     private JavaMailSender mailSender;
+
+    @Value("${spring.mail.username:}")
+    private String fromAddress;
     
     @Override
     public void sendVerificationCode(String to, String verificationCode) {
         try {
             SimpleMailMessage message = new SimpleMailMessage();
             message.setTo(to);
+            if (fromAddress != null && !fromAddress.isEmpty()) {
+                message.setFrom(fromAddress);
+            }
             message.setSubject("Cloud Shop - 密码重置验证码");
             message.setText(String.format(
                 "您好！\n\n" +
@@ -45,6 +52,9 @@ public class EmailServiceImpl implements EmailService {
         try {
             SimpleMailMessage message = new SimpleMailMessage();
             message.setTo(to);
+            if (fromAddress != null && !fromAddress.isEmpty()) {
+                message.setFrom(fromAddress);
+            }
             message.setSubject("Cloud Shop - 密码重置成功");
             message.setText(String.format(
                 "您好 %s！\n\n" +

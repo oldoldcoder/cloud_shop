@@ -26,7 +26,7 @@ router.beforeEach((to, from, next) => {
   const isAuth = isAuthenticated()
   
   // 定义不需要认证的公开路由
-  const publicRoutes = ['/login', '/register', '/forgot-password']
+  const publicRoutes = ['/login', '/register', '/forgot-password', '/reset-password']
   
   if (!isAuth && !publicRoutes.includes(to.path)) {
     // 未登录且访问需要认证的页面，重定向到登录页

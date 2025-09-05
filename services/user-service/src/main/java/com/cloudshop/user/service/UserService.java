@@ -43,6 +43,11 @@ public interface UserService {
      * 重置密码
      */
     void resetPassword(ResetPasswordRequest request);
+
+    /**
+     * 通过邮箱+验证码重置密码
+     */
+    void resetPasswordByCode(ResetPasswordByCodeRequest request);
     
     /**
      * 获取当前用户信息

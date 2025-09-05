@@ -60,10 +60,15 @@ public class UserServiceImpl implements UserService {
         if (StringUtils.hasText(request.getPhone())) {
             userMapper.findByPhone(request.getPhone()).ifPresent(u -> { throw new IllegalArgumentException("手机号已存在"); });
         }
+        // 标准化与空值处理：去除首尾空白；空字符串转为 null，避免唯一索引与空串冲突
+        String username = StringUtils.hasText(request.getUsername()) ? request.getUsername().trim() : null;
+        String email = StringUtils.hasText(request.getEmail()) ? request.getEmail().trim() : null;
+        String phone = StringUtils.hasText(request.getPhone()) ? request.getPhone().trim() : null;
+
         User user = new User();
-        user.setUsername(request.getUsername());
-        user.setEmail(request.getEmail());
-        user.setPhone(request.getPhone());
+        user.setUsername(username);
+        user.setEmail(email);
+        user.setPhone(phone);
         user.setPasswordHash(passwordEncoder.encode(request.getPassword()));
         user.setRole("USER");
         user.setStatus(1);
@@ -290,6 +295,45 @@ public class UserServiceImpl implements UserService {
         emailService.sendPasswordResetSuccess(email, user.getUsername());
         
         logger.info("密码重置成功: {}", email);
+    }
+
+    @Override
+    public void resetPasswordByCode(ResetPasswordByCodeRequest request) {
+        if (!StringUtils.hasText(request.getEmail()) || !StringUtils.hasText(request.getVerificationCode())) {
+            throw new IllegalArgumentException("邮箱和验证码不能为空");
+        }
+        if (!StringUtils.hasText(request.getNewPassword()) || !StringUtils.hasText(request.getConfirmPassword())) {
+            throw new IllegalArgumentException("新密码和确认密码不能为空");
+        }
+        if (!request.getNewPassword().equals(request.getConfirmPassword())) {
+            throw new IllegalArgumentException("两次输入的密码不一致");
+        }
+
+        // 验证验证码
+        boolean isValid = verificationCodeService.verifyCode(request.getEmail(), request.getVerificationCode());
+        if (!isValid) {
+            throw new IllegalArgumentException("验证码错误或已过期");
+        }
+
+        // 获取用户
+        Optional<User> userOpt = userMapper.findByEmail(request.getEmail());
+        if (userOpt.isEmpty()) {
+            throw new IllegalArgumentException("用户不存在");
+        }
+        User user = userOpt.get();
+        if (user.getStatus() != null && user.getStatus() == 0) {
+            throw new IllegalArgumentException("账号已被禁用");
+        }
+
+        // 更新密码
+        user.setPasswordHash(passwordEncoder.encode(request.getNewPassword()));
+        userMapper.updateById(user);
+
+        // 验证成功后删除验证码
+        verificationCodeService.removeVerificationCode(request.getEmail());
+
+        // 发送通知邮件（可选）
+        emailService.sendPasswordResetSuccess(request.getEmail(), user.getUsername());
     }
     
     @Override

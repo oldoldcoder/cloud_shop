@@ -18,7 +18,7 @@ public class UserRegisterRequest {
     @Size(min = 6, max = 20, message = "密码长度必须在6-20个字符之间")
     private String password;
     
-    @NotBlank(message = "确认密码不能为空")
+    // 确认密码字段，仅用于前端验证，后端不验证
     private String confirmPassword;
     
     private String phone;
